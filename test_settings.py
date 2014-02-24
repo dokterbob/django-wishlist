@@ -9,7 +9,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.auth',
     'django_nose',
-    'wishlist'
+    'wishlist.tests',
+    'wishlist',
 ]
 
 ROOT_URLCONF = 'wishlist.urls'
@@ -29,3 +30,5 @@ SECRET_KEY = ''.join([
 
 # Use nose for tests
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+WISHLIST_ITEM_MODEL = 'tests.TestItemModel'
