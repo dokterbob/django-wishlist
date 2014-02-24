@@ -1,0 +1,11 @@
+# Text files
+include AUTHORS.rst
+include COPYRIGHT
+include LICENSE
+include README.rst
+
+# Fixtures, templates, static files, strings and test data
+recursive-include wishlist/fixtures *
+recursive-include wishlist/templates *
+recursive-include wishlist/static *
+recursive-include wishlist/locale *
