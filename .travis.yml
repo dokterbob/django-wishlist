@@ -18,10 +18,10 @@ matrix:
 # command to install dependencies
 install:
   - pip install -q $DJANGO --use-mirrors
-  - pip install -r requirements.txt --use-mirrors
+  - pip install -r test_requirements.txt --use-mirrors
 
 # command to run tests
-script: env DJANGO_SETTINGS_MODULE=test_settings django-admin.py test --with-coverage --cover-package=wishlist wishlist
+script: env PYTHONPATH=$PWD django-admin.py test --settings=test_settings --with-coverage --cover-package=wishlist wishlist
 
 # submit coverage reports
 after_success:
