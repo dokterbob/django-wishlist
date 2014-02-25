@@ -1,3 +1,12 @@
 from django.contrib import admin
 
-# Register your models here.
+
+from .models import WishlistItem
+
+
+class WishlistItemAdmin(admin.ModelAdmin):
+    """ Admin for WishlistItem. """
+
+    pass
+
+admin.register(WishlistItemAdmin, WishlistItem)
