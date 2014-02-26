@@ -1,10 +1,15 @@
-<!DOCTYPE html>
+{% load i18n %}<!DOCTYPE html>
 <html>
 <head>
     <title>{% block htmltitle %}{% endblock %}</title>
 </head>
 <body>
-    <h1>{% block title %}{% endblock %}</h1>
+    <section class="header">
+        <h1>{% block title %}{% endblock %}</h1>
+
+        {% comment %}Show number of items - ugly syntax awaiting trimmed option{% endcomment %}
+        {% blocktrans count counter=wishlist_items.count %}1 item in wishlist{% plural %}{{ counter }} items in wishlist{% endblocktrans %}
+    </section>
     <section class="messages">
         {% block messages %}
             {% if messages %}
