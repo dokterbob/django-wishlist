@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block htmltitle %}{% trans 'Add item to wishlist' %}{% endblock %}
+{% block title %}{% trans 'Add item to wishlist' %}{% endblock %}
+
+{% block content %}
+<form action="." method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="{% trans 'Add' %}">
+</form>
+{% endblock content %}

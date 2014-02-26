@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block htmltitle %}{% trans 'Wishlist' %}{% endblock %}
+{% block title %}{% trans 'Wishlist' %}{% endblock %}
+
+{% block content %}
+<ul>
+    {% for item in object_list %}
+        <li><a href="{{ item.get_absolute_url }}">{{ item }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock content %}

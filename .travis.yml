@@ -21,7 +21,7 @@ install:
   - pip install -r test_requirements.txt --use-mirrors
 
 # command to run tests
-script: env PYTHONPATH=$PWD django-admin.py test --settings=test_settings --with-coverage --cover-package=wishlist wishlist
+script: env PYTHONPATH=$PWD django-admin.py test --settings=test_settings
 
 # submit coverage reports
 after_success:

@@ -5,6 +5,6 @@ class WishlistSettings(SettingsBase):
     """ Settings specific to wishlists. """
     settings_prefix = 'WISHLIST'
 
-    # DEFAULT_REQUEST_TIMEOUT = 5
+    DEFAULT_REDIRECT_URL = 'wishlist'
 
 wishlist_settings = WishlistSettings()
