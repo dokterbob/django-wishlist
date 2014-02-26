@@ -15,8 +15,8 @@ from .models import TestItemModel
 
 @override_settings(WISHLIST_ITEM_MODEL='tests.TestItemModel')
 class WishlistTests(WebTest):
-    def setUp(self):
-        """ Create user and initial item. """
+    """ Unit and functional tests for wishlists. """
+
     def test_save(self):
         """ Test saving a WishlistItem. """
 
@@ -28,6 +28,19 @@ class WishlistTests(WebTest):
 
         # Save
         item.save()
+
+    def test_unicode(self):
+        item = G(WishlistItem)
+
+        self.assertEquals(unicode(item), unicode(item.item))
+
+    def test_absolute_url(self):
+        item = G(WishlistItem)
+
+        self.assertEquals(
+            item.get_absolute_url(),
+            item.item.get_absolute_url()
+        )
 
     def test_add(self):
         """ Test adding an item. """
