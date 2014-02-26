@@ -81,18 +81,20 @@ class WishlistAddView(WishlistViewMixin, CreateView):
 class WishlistRemoveView(WishlistViewMixin, DeleteView):
     """ Delete item from the wishlist. """
 
-    def form_valid(self, form):
-        """ Save and report to user. """
+    def delete(self, request, *args, **kwargs):
+        """ Delete and report to user. """
 
         # Call super
-        result = super(WishlistRemoveView, self).form_valid(form)
+        result = super(WishlistRemoveView, self).delete(
+            self, request, *args, **kwargs
+        )
 
         # Create message
         messages.add_message(
             self.request,
             messages.SUCCESS,
             'Item {item} has been removed from the wishlist.'.format(
-                item=unicode(form.instance.item)
+                item=unicode(self.object)
             )
         )
 

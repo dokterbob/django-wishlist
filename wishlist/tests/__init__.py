@@ -15,6 +15,8 @@ from .models import TestItemModel
 
 @override_settings(WISHLIST_ITEM_MODEL='tests.TestItemModel')
 class WishlistTests(WebTest):
+    def setUp(self):
+        """ Create user and initial item. """
     def test_save(self):
         """ Test saving a WishlistItem. """
 
@@ -85,4 +87,4 @@ class WishlistTests(WebTest):
 
         # Test messages after adding
         self.assertContains(result, unicode(item))
-        self.assertContains(result, u'remove from the wishlist')
+        self.assertContains(result, u'removed from the wishlist')
