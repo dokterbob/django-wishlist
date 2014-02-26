@@ -1,0 +1,8 @@
+{% load i18n %}
+{% comment %}
+    Form rendered from {% wishlist_remove_form <item> %} template tag.
+{% endcomment %}
+<form action="{% url 'wishlist_remove' pk=item.wishlistitem_set.first.pk %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="{% trans 'Remove' %}">
+</form>

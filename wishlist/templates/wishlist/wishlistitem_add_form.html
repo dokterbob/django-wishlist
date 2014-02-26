@@ -1,0 +1,9 @@
+{% load i18n %}
+{% comment %}
+    Form rendered from {% wishlist_add_form <item> %} template tag.
+{% endcomment %}
+<form action="{% url 'wishlist_add' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="item" value="{{ item.pk }}">
+    <input type="submit" value="{% trans 'Add' %}">
+</form>

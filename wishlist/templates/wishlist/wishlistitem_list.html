@@ -2,19 +2,17 @@
 
 {% load i18n %}
 {% load url from future %}
+{% load wishlist_tags %}
 
 {% block htmltitle %}{% trans 'Wishlist' %}{% endblock %}
 {% block title %}{% trans 'Wishlist' %}{% endblock %}
 
 {% block content %}
 <ul>
-    {% for item in object_list %}
+    {% for wishlist_item in object_list %}
         <li>
-            <a href="{{ item.get_absolute_url }}">{{ item }}</a>
-            <form action="{% url 'wishlist_remove' pk=item.pk %}" method="post">
-                {% csrf_token %}
-                <input type="submit" value="{% trans 'Remove' %}">
-            </form>
+            <a href="{{ wishlist_item.get_absolute_url }}">{{ wishlist_item }}</a>
+            {% wishlist_remove_form wishlist_item.item %}
         </li>
     {% endfor %}
 </ul>
