@@ -5,15 +5,14 @@ from django.contrib import messages
 
 from .settings import wishlist_settings
 from .models import WishlistItem
+from .forms import WishlistItemForm
 
 
 class WishlistViewMixin(object):
     """ Common mixin for WishlistItem. """
 
     model = WishlistItem
-
-    # TODO: Custom form
-    fields = ['item']
+    form_class = WishlistItemForm
 
     # TODO: Require login
 
