@@ -8,6 +8,10 @@ django-wishlist
 .. image:: https://coveralls.io/repos/dokterbob/django-wishlist/badge.png
     :target: https://coveralls.io/r/dokterbob/django-wishlist
 
+.. image:: https://landscape.io/github/dokterbob/django-wishlist/master/landscape.png
+   :target: https://landscape.io/github/dokterbob/django-wishlist/master
+   :alt: Code Health
+
 .. image:: https://badge.fury.io/py/django-wishlist.png
     :target: http://badge.fury.io/py/django-wishlist
 
