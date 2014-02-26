@@ -1,7 +1,10 @@
 from django.views.generic import ListView, CreateView, DeleteView
-from django.utils.http import is_safe_url
 from django.shortcuts import resolve_url
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
+from django.utils.http import is_safe_url
+from django.utils.decorators import method_decorator
 
 from .settings import wishlist_settings
 from .models import WishlistItem
@@ -14,7 +17,10 @@ class WishlistViewMixin(object):
     model = WishlistItem
     form_class = WishlistItemForm
 
-    # TODO: Require login
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        """ Require user login. """
+        return super(WishlistViewMixin, self).dispatch(*args, **kwargs)
 
     def get_queryset(self):
         """ Return only items for current user. """

@@ -42,6 +42,16 @@ class WishlistTests(WebTest):
             item.item.get_absolute_url()
         )
 
+    def test_login_required(self):
+        """ Assure login is required. """
+
+        view = reverse('wishlist_add')
+
+        result = self.app.get(view)
+
+        self.assertEquals(result.status_int, 302)
+        self.assertIn('login', result.url)
+
     def test_add(self):
         """ Test adding an item. """
 
