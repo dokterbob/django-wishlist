@@ -11,7 +11,7 @@
     {% for item in object_list %}
         <li>
             <a href="{{ item.get_absolute_url }}">{{ item }}</a>
-            <form action="{% url 'wishlist_remove' item.pk %}" method="post">
+            <form action="{% url 'wishlist_remove' pk=item.pk %}" method="post">
                 {% csrf_token %}
                 <input type="submit" value="{% trans 'Remove' %}">
             </form>
