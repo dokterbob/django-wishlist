@@ -1,5 +1,5 @@
 from django.views.generic import ListView, CreateView, DeleteView
-from django.shortcuts import resolve_url
+from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -47,7 +47,7 @@ class WishlistViewMixin(object):
         )
 
         if not is_safe_url(url=redirect_to, host=self.request.get_host()):
-            redirect_to = resolve_url(wishlist_settings.REDIRECT_URL)
+            redirect_to = reverse(wishlist_settings.REDIRECT_URL)
 
         return redirect_to
 
