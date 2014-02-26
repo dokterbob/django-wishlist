@@ -111,3 +111,24 @@ class WishlistTests(WebTest):
         # Test messages after adding
         self.assertContains(result, unicode(item))
         self.assertContains(result, u'removed from the wishlist')
+
+    def test_permission(self):
+        """ List for one user should be empty for another. """
+
+        # Create wishlist item
+        item = G(WishlistItem)
+
+        # Get URL for list view
+        list_view = reverse('wishlist')
+
+        # Request view
+        list_page = self.app.get(list_view, user=item.user)
+
+        # Item for creating user
+        self.assertContains(list_page, unicode(item))
+
+        # Request view with another user
+        list_page = self.app.get(list_view, user=G(User))
+
+        # No item for other user
+        self.assertNotContains(list_page, unicode(item))
