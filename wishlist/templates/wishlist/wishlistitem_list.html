@@ -19,5 +19,8 @@
     {% endfor %}
 </ul>
 
-<p><a href="{% url 'wishlist_clear' %}">{% trans 'Clear the wishlist' %}</a></p>
+<nav>
+    <p><a href="{% url 'wishlist_add' %}">{% trans 'Add item to wishlist' %}</a></p>
+    <p><a href="{% url 'wishlist_clear' %}">{% trans 'Clear wishlist' %}</a></p>
+</nav>
 {% endblock content %}

@@ -166,7 +166,7 @@ class WishlistTests(WebTest):
         list_page = self.app.get(list_view, user=item.user)
 
         # Click clear button
-        clear_page = list_page.click('Clear the wishlist')
+        clear_page = list_page.click('Clear wishlist')
         self.assertContains(clear_page, 'Confirm')
 
         # Post form
