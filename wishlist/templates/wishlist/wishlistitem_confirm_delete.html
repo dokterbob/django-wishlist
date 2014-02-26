@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block htmltitle %}{% trans 'Remove item from wishlist' %}{% endblock %}
+{% block title %}{% trans 'Remove item from wishlist' %}{% endblock %}
+
+{% block content %}
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="{% trans 'Remove' %}">
+    </form>
+{% endblock content %}

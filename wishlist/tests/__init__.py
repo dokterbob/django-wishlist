@@ -86,6 +86,24 @@ class WishlistTests(WebTest):
         self.assertContains(result, unicode(item))
         self.assertContains(result, u'added to the wishlist')
 
+    def test_remove_confirm(self):
+        """ Test removal confirm form. """
+
+        # Create wishlist item
+        item = G(WishlistItem)
+
+        # Get URL for remove view
+        remove_view = reverse('wishlist_remove', kwargs=dict(pk=item.pk))
+
+        # Request view
+        page = self.app.get(remove_view, user=item.user)
+
+        # Post form
+        page.form.submit()
+
+        # Assert WishlistItem has been removed
+        self.assertEquals(WishlistItem.objects.count(), 0)
+
     def test_remove(self):
         """ Test removing an item. """
 
@@ -105,7 +123,7 @@ class WishlistTests(WebTest):
         # Assert WishlistItem has been removed
         self.assertEquals(WishlistItem.objects.count(), 0)
 
-        # Test redirect after adding
+        # Perform redirect after adding
         result = remove_result.follow()
 
         # Test messages after adding
