@@ -1,5 +1,7 @@
 from django.views.generic import ListView, CreateView, DeleteView
 from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -58,6 +60,28 @@ class WishlistView(WishlistViewMixin, ListView):
     pass
 
 
+class WishlistClearView(WishlistViewMixin, ListView):
+    """ Clear the wishlist. """
+
+    template_name_suffix = '_confirm_clear'
+
+    def post(self, *args, **kwargs):
+        """ Delete and report to user. """
+
+        # Delete all items
+        self.get_queryset().delete()
+
+        # Create message
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            u'The wishlist has been cleared.'
+        )
+
+        # Return result of super
+        return HttpResponseRedirect(self.get_success_url())
+
+
 class WishlistAddView(WishlistViewMixin, CreateView):
     """ Add item to the wishlist. """
 
@@ -74,7 +98,7 @@ class WishlistAddView(WishlistViewMixin, CreateView):
         messages.add_message(
             self.request,
             messages.SUCCESS,
-            'Item {item} has been added to the wishlist.'.format(
+            u'Item {item} has been added to the wishlist.'.format(
                 item=unicode(form.instance.item)
             )
         )

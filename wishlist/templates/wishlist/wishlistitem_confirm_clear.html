@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block htmltitle %}{% trans 'Clear wishlist' %}{% endblock %}
+{% block title %}{% trans 'Clear wishlist' %}{% endblock %}
+
+{% block content %}
+    {% blocktrans %}Are you sure you want to remove all items from your wishlist?{% endblocktrans %}
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="{% trans 'Confirm' %}">
+    </form>
+{% endblock content %}

@@ -97,6 +97,7 @@ class WishlistTests(WebTest):
 
         # Request view
         page = self.app.get(remove_view, user=item.user)
+        self.assertContains(page, 'Confirm')
 
         # Post form
         page.form.submit()
@@ -150,3 +151,26 @@ class WishlistTests(WebTest):
 
         # No item for other user
         self.assertNotContains(list_page, unicode(item))
+
+    def test_clear(self):
+        """ Test clearing the wishlist. """
+
+        # Begin at list view with single item
+        # Create wishlist item
+        item = G(WishlistItem)
+
+        # Get URL for list view
+        list_view = reverse('wishlist')
+
+        # Request view
+        list_page = self.app.get(list_view, user=item.user)
+
+        # Click clear button
+        clear_page = list_page.click('Clear the wishlist')
+        self.assertContains(clear_page, 'Confirm')
+
+        # Post form
+        clear_page.form.submit()
+
+        # Assert WishlistItem has been removed
+        self.assertEquals(WishlistItem.objects.count(), 0)

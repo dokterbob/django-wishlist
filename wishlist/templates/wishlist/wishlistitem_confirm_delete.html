@@ -6,9 +6,10 @@
 {% block title %}{% trans 'Remove item from wishlist' %}{% endblock %}
 
 {% block content %}
+    {% blocktrans %}Are you sure you want to remove {{ form.instance }} from your wishlist?{% endblocktrans %}
     <form action="." method="post">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" value="{% trans 'Remove' %}">
+        <input type="submit" value="{% trans 'Confirm' %}">
     </form>
 {% endblock content %}
