@@ -131,7 +131,7 @@ class WishlistUnitTests(TestCase):
         rendered = template.render(context)
 
         # Test output
-        self.assertInHTML(
+        self.assertHTMLEqual(
             '<form action="{0}" method="post">'
             '<input type="hidden" name="item" value="{1}">'
             '<input type="submit" value="Add">'
@@ -160,7 +160,7 @@ class WishlistUnitTests(TestCase):
         rendered = template.render(context)
 
         # Test output
-        self.assertInHTML(
+        self.assertHTMLEqual(
             '<form action="{0}" method="post">'
             '<input type="submit" value="Remove">'
             '</form>'.format(

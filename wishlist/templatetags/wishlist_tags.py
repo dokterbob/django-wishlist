@@ -17,6 +17,7 @@ def wishlist_form(context, item):
     assert 'user' in context
     # assert isinstance(item, wishlist_settings.ITEM_MODEL)
     assert hasattr(item, 'pk')
+    assert hasattr(item, 'wishlistitem_set')
 
     return {
         'user': context['user'],
