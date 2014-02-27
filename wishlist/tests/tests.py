@@ -2,13 +2,15 @@ from django.test import TestCase
 from django.test.utils import override_settings
 from django.test.client import RequestFactory
 
-from django.contrib.auth.models import AnonymousUser
-
 from django.core.urlresolvers import reverse
+from django.template import Template, Context
+
+from django.contrib.auth.models import AnonymousUser
 
 from django_dynamic_fixture import N, G
 
 from django_webtest import WebTest
+from webtest.response import TestResponse
 
 from ..models import WishlistItem
 from ..utils import get_user_model
@@ -107,6 +109,63 @@ class WishlistUnitTests(TestCase):
         self.assertEquals(
             result['wishlist_items'][0],
             WishlistItem.objects.for_user(user=item.user)[0]
+        )
+
+    def test_add_form(self):
+        """ Test wishlist_add_form template tag. """
+
+        # Create one wished item for testing
+        wished_item = G(TestItemModel)
+
+        # Get URL for add view
+        add_view = reverse('wishlist_add')
+
+        # Create user for testing
+        user = G(User)
+
+        # Setup and render template
+        template = Template(
+            '{% load wishlist_tags %}{% wishlist_add_form item %}'
+        )
+        context = Context(dict(item=wished_item, user=user))
+        rendered = template.render(context)
+
+        # Test output
+        self.assertInHTML(
+            '<form action="{0}" method="post">'
+            '<input type="hidden" name="item" value="{1}">'
+            '<input type="submit" value="Add">'
+            '</form>'.format(add_view, wished_item.pk),
+            rendered
+        )
+
+    def test_remove_form(self):
+        """ Test wishlist_remove_form template tag. """
+
+        # Create one item for testing
+        wishlist_item = G(WishlistItem)
+
+        # Remove url
+        remove_view = reverse(
+            'wishlist_remove', kwargs=dict(pk=wishlist_item.pk)
+        )
+
+        # Setup and render template
+        template = Template(
+            '{% load wishlist_tags %}{% wishlist_remove_form item %}'
+        )
+        context = Context(
+            dict(item=wishlist_item.item, user=wishlist_item.user)
+        )
+        rendered = template.render(context)
+
+        # Test output
+        self.assertInHTML(
+            '<form action="{0}" method="post">'
+            '<input type="submit" value="Remove">'
+            '</form>'.format(
+                remove_view
+            ), rendered
         )
 
 
