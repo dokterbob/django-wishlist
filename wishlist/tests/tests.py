@@ -1,5 +1,8 @@
 from django.test import TestCase
 from django.test.utils import override_settings
+from django.test.client import RequestFactory
+
+from django.contrib.auth.models import AnonymousUser
 
 from django.core.urlresolvers import reverse
 
@@ -10,6 +13,8 @@ from django_webtest import WebTest
 from ..models import WishlistItem
 from ..utils import get_user_model
 User = get_user_model()
+
+from ..context_processors import wishlist_items
 
 from .models import TestItemModel
 
@@ -74,6 +79,34 @@ class WishlistUnitTests(TestCase):
         self.assertEquals(
             WishlistItem.objects.for_user(user=user2)[0],
             item2
+        )
+
+    def test_context_processor(self):
+        """ Test wishlist_items context processor. """
+
+        # Create one item for testing
+        item = G(WishlistItem)
+
+        # Request factory and request
+        factory = RequestFactory()
+        request = factory.get('/')
+
+        # Anonymous user
+        request.user = AnonymousUser()
+
+        # No context for anonymous users
+        result = wishlist_items(request)
+        self.assertEquals(result, {})
+
+        # User set, should return items for user
+        request.user = item.user
+        result = wishlist_items(request)
+
+        self.assertEquals(len(result['wishlist_items']), 1)
+
+        self.assertEquals(
+            result['wishlist_items'][0],
+            WishlistItem.objects.for_user(user=item.user)[0]
         )
 
 
