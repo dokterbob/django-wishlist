@@ -22,6 +22,7 @@ class WishlistViewMixin(object):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         """ Require user login. """
+
         return super(WishlistViewMixin, self).dispatch(*args, **kwargs)
 
     def get_queryset(self):
@@ -31,7 +32,9 @@ class WishlistViewMixin(object):
         assert user.is_authenticated(), \
             'View should not be accesible for unauthenticated users.'
 
-        return super(WishlistViewMixin, self).get_queryset().filter(user=user)
+        qs = super(WishlistViewMixin, self).get_queryset()
+
+        return qs.for_user(user=user)
 
     def get_success_url(self):
         """

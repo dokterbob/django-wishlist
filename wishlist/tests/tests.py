@@ -1,3 +1,4 @@
+from django.test import TestCase
 from django.test.utils import override_settings
 
 from django.core.urlresolvers import reverse
@@ -14,8 +15,8 @@ from .models import TestItemModel
 
 
 @override_settings(WISHLIST_ITEM_MODEL='tests.TestItemModel')
-class WishlistTests(WebTest):
-    """ Unit and functional tests for wishlists. """
+class WishlistUnitTests(TestCase):
+    """ Unit tests for wishlists. """
 
     def test_save(self):
         """ Test saving a WishlistItem. """
@@ -30,17 +31,55 @@ class WishlistTests(WebTest):
         item.save()
 
     def test_unicode(self):
+        """ Test __unicode__ """
         item = G(WishlistItem)
 
         self.assertEquals(unicode(item), unicode(item.item))
 
     def test_absolute_url(self):
+        """ Test get_absolute_url() """
         item = G(WishlistItem)
 
         self.assertEquals(
             item.get_absolute_url(),
             item.item.get_absolute_url()
         )
+
+    def test_manager(self):
+        """ Test custom user manager """
+
+        # Create two users and wishlist items
+        user1 = G(User)
+        user2 = G(User)
+
+        item1 = G(WishlistItem, user=user1)
+        item2 = G(WishlistItem, user=user2)
+
+        # Only this item should be available
+        self.assertEquals(
+            WishlistItem.objects.for_user(user=user1).count(),
+            1
+        )
+
+        self.assertEquals(
+            WishlistItem.objects.for_user(user=user1)[0],
+            item1
+        )
+
+        self.assertEquals(
+            WishlistItem.objects.for_user(user=user2).count(),
+            1
+        )
+
+        self.assertEquals(
+            WishlistItem.objects.for_user(user=user2)[0],
+            item2
+        )
+
+
+@override_settings(WISHLIST_ITEM_MODEL='tests.TestItemModel')
+class WishlistFunctionalTests(WebTest):
+    """ Functional/integration tests for views. """
 
     def test_login_required(self):
         """ Assure login is required. """
@@ -202,3 +241,5 @@ class WishlistTests(WebTest):
 
         # Assert WishlistItem has been removed
         self.assertEquals(WishlistItem.objects.count(), 0)
+
+

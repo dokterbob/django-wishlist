@@ -6,7 +6,7 @@ def wishlist_items(request):
 
     if request.user.is_authenticated():
         return {
-            'wishlist_items': WishlistItem.objects.filter(user=request.user)
+            'wishlist_items': WishlistItem.objects.for_user(user=request.user)
         }
 
     # No user, no wishlist
