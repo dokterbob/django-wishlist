@@ -9,4 +9,4 @@ class WishlistItemAdmin(admin.ModelAdmin):
 
     pass
 
-admin.register(WishlistItemAdmin, WishlistItem)
+admin.site.register(WishlistItem, WishlistItemAdmin)
