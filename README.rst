@@ -38,6 +38,50 @@ Requirements
 Please refer to `requirements.txt <http://github.com/dokterbob/django-wishlist/blob/master/requirements.txt>`_
 for an updated list of required packages.
 
+Installation
+============
+
+The package is available 
+
+To install:
+
+1. In requirements.txt add::
+
+   -e git+https://github.com/dokterbob/django-wishlist.git#egg=django-wishlist
+
+2. In settings_default.py:
+
+   - add 'wishlist' to INSTALLED_APPS. 
+
+   - add WISHLIST_ITEM_MODEL = PRODUCT_MODEL
+  
+     PRODUCT_MODEL refers to the model of the product
+     you want to be able to present in a wishlist.
+
+   For example::
+           
+        INSTALLED_APPS = [
+            'localeurl',
+            'django.contrib.auth',
+            'django.contrib.contenttypes',
+            'django.contrib.sessions',
+            'django.contrib.sites',
+                
+            'wishlist'
+        ]
+            
+        """ django-wishlist """
+        WISHLIST_ITEM_MODEL = SHOPKIT_PRODUCT_MODEL
+
+3. In urls.py add::
+
+       (r'^/wishlist/', include('wishlist.urls')),
+
+4. At the command line execute::
+
+       pip install -r requirements.txt
+       ./manage.py syncdb
+
 Tests
 ==========
 Tests for pull req's and the master branch are automatically run through
