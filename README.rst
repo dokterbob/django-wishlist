@@ -85,6 +85,21 @@ To install:
 
    Note Migrations do not work as the model is dynamically configured.
 
+Usage
+===========
+
+Create a button to add an item to the wishlist simply from within your template.
+
+At the top of the page add::
+
+    {% load wishlist_tags %}
+
+And where you want the button add::
+
+    {% wishlist_add_form product %}
+
+Where product is the product you want to add to the wishlist.
+
 Tests
 ==========
 Tests for pull req's and the master branch are automatically run through
