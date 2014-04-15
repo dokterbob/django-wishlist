@@ -57,7 +57,7 @@ To install:
    - Configure `WISHLIST_ITEM_MODEL` to the model used for wishlist items.
 
    - Optionally: add `wishlist.context_processors.wishlist_items` to your
-     `CONTEXT_PROCESSORS`.
+     `TEMPLATE_CONTEXT_PROCESSORS`.
 
    For example::
 
@@ -67,7 +67,7 @@ To install:
             ...
         ]
 
-        CONTEXT_PROCESSORS = [
+        TEMPLATE_CONTEXT_PROCESSORS = [
             ...
             'wishlist.context_processors.wishlist_items',
             ...
