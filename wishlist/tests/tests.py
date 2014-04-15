@@ -217,6 +217,46 @@ class WishlistFunctionalTests(WebTest):
         self.assertContains(result, unicode(item))
         self.assertContains(result, u'added to the wishlist')
 
+    def test_add_twice(self):
+        """
+        Test adding an item twice.
+
+        Should add a warning message and not generate an exception.
+        """
+
+        # Get URL for add view
+        add_view = reverse('wishlist_add')
+
+        # Create an item to add
+        wished_item = G(TestItemModel, slug='test')
+
+        # Create a user and login
+        user = G(User)
+
+        # Request add view
+        add_page = self.app.get(add_view, user=user)
+
+        # Fill in form and post
+        add_form = add_page.form
+        add_form['item'] = wished_item.pk
+        add_result = add_form.submit()
+
+        # Assert WishlistItem has been created
+        self.assertEquals(WishlistItem.objects.count(), 1)
+
+        # Test redirect after adding
+        result = add_result.follow()
+        self.assertContains(result, u'added to the wishlist')
+
+        # Post again
+        add_result = add_form.submit()
+
+        # Assert WishlistItem still in wishlist
+        self.assertEquals(WishlistItem.objects.count(), 1)
+
+        # Test redirect after adding
+        self.assertContains(add_result, u'already in the wishlist')
+
     def test_remove_confirm(self):
         """ Test removal confirm form. """
 
@@ -333,5 +373,3 @@ class WishlistFunctionalTests(WebTest):
 
         # Assert WishlistItem has been removed
         self.assertEquals(WishlistItem.objects.count(), 0)
-
-

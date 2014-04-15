@@ -1,5 +1,7 @@
-from django.views.generic import ListView, CreateView, DeleteView
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ValidationError
+
+from django.views.generic import ListView, CreateView, DeleteView
 from django.http import HttpResponseRedirect
 
 from django.contrib import messages
@@ -94,19 +96,34 @@ class WishlistAddView(WishlistViewMixin, CreateView):
         # Set user
         form.instance.user = self.request.user
 
+        # Get created instance
+        self.object = form.save(commit=False)
+
+        # Validate uniqueness
+        try:
+            form.instance.validate_unique()
+        except ValidationError:
+            messages.add_message(
+                self.request, messages.ERROR,
+                u'Item {item} is already in the wishlist.'.format(
+                    item=unicode(form.instance.item)
+                )
+            )
+
+            return self.form_invalid(form)
+
         # Call super
         result = super(WishlistAddView, self).form_valid(form)
 
         # Create message
         messages.add_message(
-            self.request,
-            messages.SUCCESS,
+            self.request, messages.SUCCESS,
             u'Item {item} has been added to the wishlist.'.format(
                 item=unicode(form.instance.item)
             )
         )
 
-        # Return result of super
+        # Return super
         return result
 
 
