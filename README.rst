@@ -5,29 +5,30 @@ django-wishlist
 .. image:: https://secure.travis-ci.org/dokterbob/django-wishlist.png?branch=master
     :target: http://travis-ci.org/dokterbob/django-wishlist
 
-.. image:: https://coveralls.io/repos/dokterbob/django-wishlist/badge.png
-    :target: https://coveralls.io/r/dokterbob/django-wishlist
+.. .. image:: https://coveralls.io/repos/dokterbob/django-wishlist/badge.png
+..     :target: https://coveralls.io/r/dokterbob/django-wishlist
 
 .. image:: https://landscape.io/github/dokterbob/django-wishlist/master/landscape.png
    :target: https://landscape.io/github/dokterbob/django-wishlist/master
    :alt: Code Health
 
-.. image:: https://badge.fury.io/py/django-wishlist.png
-    :target: http://badge.fury.io/py/django-wishlist
+.. .. image:: https://badge.fury.io/py/django-wishlist.png
+..    :target: http://badge.fury.io/py/django-wishlist
 
-.. image:: https://pypip.in/d/django-wishlist/badge.png
-    :target: https://crate.io/packages/django-wishlist?version=latest
+.. .. image:: https://pypip.in/d/django-wishlist/badge.png
+..    :target: https://crate.io/packages/django-wishlist?version=latest
 
 Generic user wishlists for use with any Django model.
 -----------------------------------------------------
 
 What is it?
 ===========
-TO BE DONE
+Generic user wishlists for shops and the likes.
 
 Status
 ======
-Early alpha. Don't use it, unless you're willing to fix issues.
+Alpha. Don't use it, unless you're willing to fix issues. Will be released
+on PyPI as soon as tested in limited production.
 
 Compatibility
 =============
@@ -41,46 +42,39 @@ for an updated list of required packages.
 Installation
 ============
 
-The package is available 
+The package is available
 
 To install:
 
-1. In requirements.txt add::
+1. Install the django-wishlist app::
 
-   -e git+https://github.com/dokterbob/django-wishlist.git#egg=django-wishlist
+    pip install -e git+https://github.com/dokterbob/django-wishlist.git#egg=django-wishlist
 
-2. In settings_default.py:
+2. In your Django settings:
 
-   - add 'wishlist' to INSTALLED_APPS. 
+   - Add `'wishlist'` to `INSTALLED_APPS`.
 
-   - add WISHLIST_ITEM_MODEL = PRODUCT_MODEL
-  
-     PRODUCT_MODEL refers to the model of the product
-     you want to be able to present in a wishlist.
+   - Configure `WISHLIST_ITEM_MODEL` to the model used for wishlist items.
 
    For example::
-           
-        INSTALLED_APPS = [
-            'localeurl',
-            'django.contrib.auth',
-            'django.contrib.contenttypes',
-            'django.contrib.sessions',
-            'django.contrib.sites',
-                
-            'wishlist'
-        ]
-            
-        """ django-wishlist """
-        WISHLIST_ITEM_MODEL = SHOPKIT_PRODUCT_MODEL
 
-3. In urls.py add::
+        INSTALLED_APPS = [
+            ...
+            'wishlist'
+            ...
+        ]
+
+        WISHLIST_ITEM_MODEL = 'my_webshop.Product'
+
+3. In `urls.py` add::
 
        (r'^/wishlist/', include('wishlist.urls')),
 
-4. At the command line execute::
+4. Update the database::
 
-       pip install -r requirements.txt
        ./manage.py syncdb
+
+   Note Migrations do not work as the model is dynamically configured.
 
 Tests
 ==========
