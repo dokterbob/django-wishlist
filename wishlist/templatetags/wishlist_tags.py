@@ -1,8 +1,8 @@
 from django import template
 
-register = template.Library()
+from copy import copy
 
-# from ..settings import wishlist_settings
+register = template.Library()
 
 
 def wishlist_form(context, item):
@@ -15,14 +15,17 @@ def wishlist_form(context, item):
 
     # TODO: Replace by proper, meaningful, exceptions.
     assert 'user' in context
-    # assert isinstance(item, wishlist_settings.ITEM_MODEL)
     assert hasattr(item, 'pk')
     assert hasattr(item, 'wishlistitem_set')
 
-    return {
-        'user': context['user'],
-        'item': item
-    }
+    # Copy local context dict, including
+    context = copy(context)
+
+    # Add item
+    context['item'] = item
+
+    # Return context for use in inclusion tag
+    return context
 
 # Register for adding
 register.inclusion_tag(
