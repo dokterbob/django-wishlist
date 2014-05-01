@@ -102,6 +102,7 @@ class WishlistAddView(WishlistViewMixin, CreateView):
         # Validate uniqueness
         try:
             form.instance.validate_unique()
+
         except ValidationError:
             messages.add_message(
                 self.request, messages.ERROR,
@@ -110,7 +111,8 @@ class WishlistAddView(WishlistViewMixin, CreateView):
                 )
             )
 
-            return self.form_invalid(form)
+            # Return redirect to success URL
+            return HttpResponseRedirect(self.get_success_url())
 
         # Call super
         result = super(WishlistAddView, self).form_valid(form)

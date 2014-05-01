@@ -188,6 +188,7 @@ class WishlistFunctionalTests(WebTest):
 
         # Get URL for add view
         add_view = reverse('wishlist_add')
+        list_view = reverse('wishlist')
 
         # Create an item to add
         wished_item = G(TestItemModel, slug='test')
@@ -210,6 +211,9 @@ class WishlistFunctionalTests(WebTest):
         self.assertEquals(item.user, user)
         self.assertEquals(item.item_id, wished_item.pk)
 
+        # Assert redirect location
+        self.assertTrue(add_result.location.endswith(list_view))
+
         # Test redirect after adding
         result = add_result.follow()
 
@@ -226,6 +230,7 @@ class WishlistFunctionalTests(WebTest):
 
         # Get URL for add view
         add_view = reverse('wishlist_add')
+        list_view = reverse('wishlist')
 
         # Create an item to add
         wished_item = G(TestItemModel, slug='test')
@@ -254,8 +259,14 @@ class WishlistFunctionalTests(WebTest):
         # Assert WishlistItem still in wishlist
         self.assertEquals(WishlistItem.objects.count(), 1)
 
+        # Assert redirect location
+        self.assertTrue(add_result.location.endswith(list_view))
+
         # Test redirect after adding
-        self.assertContains(add_result, u'already in the wishlist')
+        result = add_result.follow()
+
+        # Test redirect after adding
+        self.assertContains(result, u'already in the wishlist')
 
     def test_remove_confirm(self):
         """ Test removal confirm form. """
