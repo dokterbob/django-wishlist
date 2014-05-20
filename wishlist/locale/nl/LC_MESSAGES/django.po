@@ -1,0 +1,89 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# COSMANIA <info@cosmania.nl>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: cosmania\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-01 17:15+0200\n"
+"PO-Revision-Date: 2014-05-19 18:50+0000\n"
+"Last-Translator: COSMANIA <info@cosmania.nl>\n"
+"Language-Team: Dutch (http://www.transifex.com/projects/p/cosmania/language/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: models.py:16
+msgid "created"
+msgstr "Wishlist aangemaakt"
+
+#: models.py:24
+msgid "wishlist"
+msgstr "Wishlist"
+
+#: models.py:25
+msgid "wishlists"
+msgstr "wishlist"
+
+#: templates/base.html:12
+#, python-format
+msgid "1 item in wishlist"
+msgid_plural "%(counter)s items in wishlist"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/wishlist/wishlistitem_add_form.html:9
+#: templates/wishlist/wishlistitem_form.html:13
+msgid "Add"
+msgstr "Toevoegen"
+
+#: templates/wishlist/wishlistitem_confirm_clear.html:6
+#: templates/wishlist/wishlistitem_confirm_clear.html:7
+#: templates/wishlist/wishlistitem_list.html:22
+msgid "Clear wishlist"
+msgstr "Maak je wishlist leeg"
+
+#: templates/wishlist/wishlistitem_confirm_clear.html:10
+msgid "Are you sure you want to remove all items from your wishlist?"
+msgstr "Weet je het zeker dat je je wishlist leeg wilt maken?"
+
+#: templates/wishlist/wishlistitem_confirm_clear.html:14
+#: templates/wishlist/wishlistitem_confirm_delete.html:14
+msgid "Confirm"
+msgstr "Bevestigen"
+
+#: templates/wishlist/wishlistitem_confirm_clear.html:18
+#: templates/wishlist/wishlistitem_confirm_delete.html:18
+#: templates/wishlist/wishlistitem_form.html:17
+msgid "Back to the wishlist"
+msgstr "Terug naar je wishlist"
+
+#: templates/wishlist/wishlistitem_confirm_delete.html:6
+#: templates/wishlist/wishlistitem_confirm_delete.html:7
+msgid "Remove item from wishlist"
+msgstr "Verwijder dit product van je wishlist"
+
+#: templates/wishlist/wishlistitem_confirm_delete.html:10
+#, python-format
+msgid "Are you sure you want to remove %(form.instance)s from your wishlist?"
+msgstr "Weet je het zeker dat je de %(form.instance)s van je wishlist wilt verwijderen?"
+
+#: templates/wishlist/wishlistitem_form.html:6
+#: templates/wishlist/wishlistitem_form.html:7
+#: templates/wishlist/wishlistitem_list.html:21
+msgid "Add item to wishlist"
+msgstr "Zet op je wishlist"
+
+#: templates/wishlist/wishlistitem_list.html:7
+#: templates/wishlist/wishlistitem_list.html:8
+msgid "Wishlist"
+msgstr "Wishlist"
+
+#: templates/wishlist/wishlistitem_remove_form.html:8
+msgid "Remove"
+msgstr "Verwijder"
