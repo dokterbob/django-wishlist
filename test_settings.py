@@ -20,6 +20,9 @@ SITE_ID = 1
 # Enable time-zone support for Django 1.4 (ignored in older versions)
 USE_TZ = True
 
+# Disable translations - we're testing the app, not Django's translations
+USE_I18N = False
+
 # Generate random secret key
 import random
 SECRET_KEY = ''.join([
