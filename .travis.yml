@@ -1,19 +1,11 @@
 language: python
 
-python:
-  - "2.6"
-  - "2.7"
+python: 2.7
 
 env:
-  - DJANGO=Django==1.4.10
-  - DJANGO=Django==1.5.5
-  - DJANGO=Django==1.6.2
-  # - DJANGO=https://www.djangoproject.com/m/releases/1.7/Django-1.7a2.tar.gz
-
-# matrix:
-#   allow_failures:
-#     # Allow failures for unreleased Django version
-#     - env: DJANGO=https://www.djangoproject.com/m/releases/1.7/Django-1.7a2.tar.gz
+  - DJANGO=Django<1.8
+  - DJANGO=Django<1.9
+  - DJANGO=Django==1.9rc1
 
 # command to install dependencies
 install:

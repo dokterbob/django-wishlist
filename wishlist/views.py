@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.utils.http import is_safe_url
 from django.utils.decorators import method_decorator
+from django.utils.translation import ugettext as _
 
 from .settings import wishlist_settings
 from .models import WishlistItem
@@ -80,7 +81,7 @@ class WishlistClearView(WishlistViewMixin, ListView):
         messages.add_message(
             self.request,
             messages.SUCCESS,
-            u'The wishlist has been cleared.'
+            _(u'The wishlist has been cleared.')
         )
 
         # Return result of super
@@ -106,7 +107,7 @@ class WishlistAddView(WishlistViewMixin, CreateView):
         except ValidationError:
             messages.add_message(
                 self.request, messages.ERROR,
-                u'Item {item} is already in the wishlist.'.format(
+                _(u'Item {item} is already in the wishlist.').format(
                     item=unicode(form.instance.item)
                 )
             )
@@ -120,7 +121,7 @@ class WishlistAddView(WishlistViewMixin, CreateView):
         # Create message
         messages.add_message(
             self.request, messages.SUCCESS,
-            u'Item {item} has been added to the wishlist.'.format(
+            _(u'Item {item} has been added to the wishlist.').format(
                 item=unicode(form.instance.item)
             )
         )
@@ -144,7 +145,7 @@ class WishlistRemoveView(WishlistViewMixin, DeleteView):
         messages.add_message(
             self.request,
             messages.SUCCESS,
-            'Item {item} has been removed from the wishlist.'.format(
+            _('Item {item} has been removed from the wishlist.').format(
                 item=unicode(self.object)
             )
         )
