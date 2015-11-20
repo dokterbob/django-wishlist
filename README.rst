@@ -32,7 +32,7 @@ on PyPI as soon as tested in limited production.
 
 Compatibility
 =============
-Tested to work with Django 1.4, 1.5 and 1.6 and Python 2.6 as well as 2.7.
+Tested to work with Django 1.7, 1.8 and 1.9 and Python 2.7.
 
 Requirements
 ============
