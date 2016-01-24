@@ -31,7 +31,7 @@ except:
 
 setup(
     name='django-wishlist',
-    version='0.1',
+    version='0.2',
     description='Generic user wishlists for use with any Django model.',
     long_description=README,
     install_requires=REQUIREMENTS,
@@ -42,7 +42,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     classifiers=(
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
