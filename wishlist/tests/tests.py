@@ -7,14 +7,14 @@ from django.template import Template, Context
 
 from django.contrib.auth.models import AnonymousUser
 
+from django.conf import get_user_model
+User = get_user_model()
+
 from django_dynamic_fixture import N, G
 
 from django_webtest import WebTest
-from webtest.response import TestResponse
 
 from ..models import WishlistItem
-from ..utils import get_user_model
-User = get_user_model()
 
 from ..context_processors import wishlist_items
 
