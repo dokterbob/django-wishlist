@@ -9,8 +9,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.auth',
     'django_nose',
-    'wishlist.tests',
     'wishlist',
+    'tests'
 ]
 
 ROOT_URLCONF = 'wishlist.urls'
