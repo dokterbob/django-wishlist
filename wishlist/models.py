@@ -6,6 +6,7 @@ from .settings import wishlist_settings
 
 from .managers import UserManager
 
+
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
