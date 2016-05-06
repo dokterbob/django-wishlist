@@ -10,7 +10,6 @@ from django.contrib.auth.models import AnonymousUser
 from django_dynamic_fixture import N, G
 
 from django_webtest import WebTest
-from webtest.response import TestResponse
 
 from wishlist.models import WishlistItem
 from wishlist.utils import get_user_model
