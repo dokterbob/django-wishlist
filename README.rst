@@ -1,22 +1,19 @@
-=================
+###############
 django-wishlist
-=================
+###############
 
-.. image:: https://secure.travis-ci.org/dokterbob/django-wishlist.png?branch=master
+.. image:: https://img.shields.io/pypi/v/django-wishlist.svg
+    :target: https://pypi.python.org/pypi/django-wishlist
+
+.. image:: https://img.shields.io/travis/dokterbob/django-wishlist/master.svg
     :target: http://travis-ci.org/dokterbob/django-wishlist
 
-.. .. image:: https://coveralls.io/repos/dokterbob/django-wishlist/badge.png
-..     :target: https://coveralls.io/r/dokterbob/django-wishlist
+.. image:: https://coveralls.io/repos/dokterbob/django-wishlist/badge.svg?branch=master&service=github
+    :target: https://coveralls.io/github/dokterbob/django-wishlist?branch=master
 
-.. image:: https://landscape.io/github/dokterbob/django-wishlist/master/landscape.png
+.. image:: https://landscape.io/github/dokterbob/django-wishlist/master/landscape.svg?style=flat
    :target: https://landscape.io/github/dokterbob/django-wishlist/master
    :alt: Code Health
-
-.. .. image:: https://badge.fury.io/py/django-wishlist.png
-..    :target: http://badge.fury.io/py/django-wishlist
-
-.. .. image:: https://pypip.in/d/django-wishlist/badge.png
-..    :target: https://crate.io/packages/django-wishlist?version=latest
 
 Generic user wishlists for use with any Django model.
 -----------------------------------------------------
@@ -32,7 +29,7 @@ on PyPI as soon as tested in limited production.
 
 Compatibility
 =============
-Tested to work with Django 1.7, 1.8 and 1.9 and Python 2.7.
+Tested to work with Django 1.8 and 1.9 and Python 2.7.
 
 Requirements
 ============
@@ -48,7 +45,7 @@ To install:
 
 1. Install the django-wishlist app::
 
-    pip install -e git+https://github.com/dokterbob/django-wishlist.git#egg=django-wishlist
+    pip install django-wishlist
 
 2. In your Django settings:
 
