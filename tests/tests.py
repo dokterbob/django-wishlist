@@ -6,18 +6,18 @@ from django.core.urlresolvers import reverse
 from django.template import Template, Context
 
 from django.contrib.auth.models import AnonymousUser
+from django.contrib.auth import get_user_model
 
 from django_dynamic_fixture import N, G
 
 from django_webtest import WebTest
 
 from wishlist.models import WishlistItem
-from wishlist.utils import get_user_model
-User = get_user_model()
-
 from wishlist.context_processors import wishlist_items
 
 from .models import TestItemModel
+
+User = get_user_model()
 
 
 @override_settings(WISHLIST_ITEM_MODEL='tests.TestItemModel')

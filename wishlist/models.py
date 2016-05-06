@@ -1,13 +1,12 @@
 from django.db import models
-
+from django.conf import settings
 from django.utils.translation import ugettext as _
 
 from .settings import wishlist_settings
 
 from .managers import UserManager
 
-from .utils import get_user_model
-User = get_user_model()
+AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
 class WishlistItem(models.Model):
@@ -15,7 +14,7 @@ class WishlistItem(models.Model):
 
     created = models.DateTimeField(_('created'), auto_now_add=True)
 
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(AUTH_USER_MODEL)
     item = models.ForeignKey(wishlist_settings.ITEM_MODEL)
 
     objects = UserManager()

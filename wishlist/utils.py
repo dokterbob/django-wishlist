@@ -79,16 +79,3 @@ def import_object(from_path):
     module, attr = from_path.rsplit(".", 1)
     mod = import_module(module)
     return getattr(mod, attr)
-
-
-def get_user_model():
-    """ get_user_model compatibility wrapper. Returns active User model. """
-    try:
-        from django.contrib.auth import get_user_model
-    except ImportError:
-        # Django < v1.5
-        from django.contrib.auth.models import User
-    else:
-        User = get_user_model()
-
-    return User
