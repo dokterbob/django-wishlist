@@ -1,5 +1,3 @@
-django-nose
 django-dynamic-fixture
 webtest
 django-webtest
-yanc

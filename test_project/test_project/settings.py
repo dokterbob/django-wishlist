@@ -31,15 +31,6 @@ SECRET_KEY = ''.join([
     ) for i in range(50)
 ])
 
-# Use nose for tests
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
-
-# Nose defaults
-NOSE_ARGS = [
-    '--detailed-errors', '--logging-level=INFO', '--with-yanc',
-    '--with-coverage', '--cover-package=wishlist'
-]
-
 # Required for django-webtest to work
 STATIC_URL = '/static/'
 
