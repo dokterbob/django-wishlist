@@ -17,23 +17,23 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import warnings
+
 from setuptools import setup, find_packages
 
 try:
-    README = open('README.rst').read()
+    README = open('README.rst').read() + '\n\n'
+    README += open('CHANGES.rst').read()
 except:
+    warnings.warn('Could not read README.rst and/or CHANGES.rst')
     README = None
 
 try:
     REQUIREMENTS = open('requirements.txt').read()
 except:
+    warnings.warn('Could not read requirements.txt')
     REQUIREMENTS = None
 
-setup(
-    name='django-wishlist',
-    version='0.1',
-    description='Generic user wishlists for use with any Django model.',
-    long_description=README,
 try:
     TEST_REQUIREMENTS = open('requirements_test.txt').read()
 except:
@@ -41,6 +41,11 @@ except:
     TEST_REQUIREMENTS = None
 
 
+setup(
+    name='django-wishlist',
+    version='1.0',
+    description='Generic user wishlists for use with any Django model.',
+    long_description=README,
     install_requires=REQUIREMENTS,
     license='AGPL',
     author='Mathijs de Bruin',
@@ -49,7 +54,7 @@ except:
     packages=find_packages(exclude=("tests", "test_project")),
     include_package_data=True,
     classifiers=(
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
