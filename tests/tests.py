@@ -12,11 +12,11 @@ from django_dynamic_fixture import N, G
 from django_webtest import WebTest
 from webtest.response import TestResponse
 
-from ..models import WishlistItem
-from ..utils import get_user_model
+from wishlist.models import WishlistItem
+from wishlist.utils import get_user_model
 User = get_user_model()
 
-from ..context_processors import wishlist_items
+from wishlist.context_processors import wishlist_items
 
 from .models import TestItemModel
 

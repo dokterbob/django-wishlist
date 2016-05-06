@@ -1,20 +1,37 @@
 language: python
 
-python: 2.7
+sudo: false
+
+python:
+  - 2.7
+  - 3.4
+  - 3.5
 
 env:
-  - DJANGO=Django<1.8
-  - DJANGO=Django<1.9
-  - DJANGO=Django==1.9rc1
+  - DJANGO="Django<1.9"  # Django 1.8.x
+  - DJANGO="Django<1.10" # Django 1.9.x
+
+cache:
+  directories:
+    - $HOME/.cache/pip
+
+matrix:
+  allow_failures:
+    # Allow failures for unreleased Django version
+    - python: 3.4
+    - python: 3.5
 
 # command to install dependencies
 install:
-  - pip install -q $DJANGO --use-mirrors
-  - pip install -r test_requirements.txt --use-mirrors
+  # Latest PIP uses wheel by default
+  - pip install --upgrade pip
+  - pip install -q $DJANGO
+  - pip install -r requirements.txt
+  - pip install -r requirements_test.txt
+  - pip install coveralls
 
 # command to run tests
-script: env PYTHONPATH=$PWD django-admin.py test --settings=test_settings
+script: coverage run setup.py test
 
-# submit coverage reports
 after_success:
-  - coveralls
+  coveralls

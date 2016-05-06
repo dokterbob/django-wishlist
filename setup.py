@@ -34,12 +34,19 @@ setup(
     version='0.1',
     description='Generic user wishlists for use with any Django model.',
     long_description=README,
+try:
+    TEST_REQUIREMENTS = open('requirements_test.txt').read()
+except:
+    warnings.warn('Could not read requirements_test.txt')
+    TEST_REQUIREMENTS = None
+
+
     install_requires=REQUIREMENTS,
     license='AGPL',
     author='Mathijs de Bruin',
     author_email='mathijs@mathijsfietst.nl',
     url='https://github.com/dokterbob/django-wishlist/',
-    packages=find_packages(),
+    packages=find_packages(exclude=("tests", "test_project")),
     include_package_data=True,
     classifiers=(
         'Development Status :: 3 - Alpha',
@@ -50,5 +57,7 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Topic :: Utilities'
-    )
+    ),
+    test_suite='runtests.run_tests',
+    tests_require=TEST_REQUIREMENTS
 )
