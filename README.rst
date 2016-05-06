@@ -78,7 +78,7 @@ To install:
 
 4. Update the database::
 
-       ./manage.py syncdb
+       ./manage.py migrate
 
    Note Migrations do not work as the model is dynamically configured.
 
